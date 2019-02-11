@@ -122,8 +122,6 @@ public class ChatActivity extends AppCompatActivity implements ChatContract.View
         String message = typeMessageEditText.getText().toString();
 
         typeMessageEditText.setText("");
-        //scroll to the bottom
-        messagesRecyclerView.smoothScrollToPosition(chatAdapter.getItemCount());
 
         presenter.onSendMessageClick(message, receiver);
     }
@@ -150,5 +148,7 @@ public class ChatActivity extends AppCompatActivity implements ChatContract.View
         messagesList.addAll(messages);
 
         chatAdapter.notifyDataSetChanged();
+        //scroll to the bottom
+        messagesRecyclerView.smoothScrollToPosition(chatAdapter.getItemCount());
     }
 }

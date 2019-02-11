@@ -42,12 +42,14 @@ public class ChatWithUserAdapter extends RecyclerView.Adapter<ChatWithUserAdapte
 
         if (viewType == MESSAGE_TYPE_SENT){
 
-            View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_sent_message, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_sent_message,
+                    parent, false);
             return new ViewHolder(view);
 
         } else {
 
-            View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_incoming_message, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_incoming_message,
+                    parent, false);
             return new ViewHolder(view);
         }
     }
