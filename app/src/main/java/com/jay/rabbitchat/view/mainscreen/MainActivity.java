@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.jay.rabbitchat.R;
+import com.jay.rabbitchat.presenter.MainPresenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -12,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainContract.View {
 
     private InterlocutorsFragment interlocutorsFragment;
     private GroupsFragment groupsFragment;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SettingsFragment settingsFragment;
 
     private FragmentManager manager;
+
+    private MainPresenter presenter;
+
 
     @BindView(R.id.messages) ImageView messagesImageView;
 
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         groupsImageView.setOnClickListener(this);
         searchImageView.setOnClickListener(this);
         settingsImageView.setOnClickListener(this);
+
+        presenter = new MainPresenter(this);
 
         setupFragments();
     }
@@ -80,5 +86,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
         transaction.commit();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //the user online
+        presenter.setStatus(true);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //the user offline
+        presenter.setStatus(false);
+        presenter.setWasOnline();
+        presenter.onDestroy();
     }
 }

@@ -18,13 +18,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHolder> {
+public class InterlocutorsListAdapter extends RecyclerView.Adapter<InterlocutorsListAdapter.ViewHolder> {
 
     private Context context;
     private List<User> users;
 
 
-    public ChatListAdapter(Context context, List<User> users) {
+    public InterlocutorsListAdapter(Context context, List<User> users) {
         this.context = context;
         this.users = users;
     }

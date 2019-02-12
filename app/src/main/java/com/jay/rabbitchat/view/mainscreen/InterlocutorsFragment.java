@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.jay.rabbitchat.R;
-import com.jay.rabbitchat.model.adapter.ChatListAdapter;
-import com.jay.rabbitchat.model.firebasedatabase.chat.Interlocutors;
+import com.jay.rabbitchat.model.adapter.InterlocutorsListAdapter;
 import com.jay.rabbitchat.model.firebasedatabase.user.User;
 import com.jay.rabbitchat.presenter.InterlocutorsPresenter;
 
@@ -49,7 +48,7 @@ public class InterlocutorsFragment extends Fragment implements InterlocutorsCont
     //    @Inject
     private InterlocutorsPresenter presenter;
 
-    private ChatListAdapter chatListAdapter;
+    private InterlocutorsListAdapter interlocutorsListAdapter;
 
     private List<User> userList = new ArrayList<>();
 
@@ -89,8 +88,8 @@ public class InterlocutorsFragment extends Fragment implements InterlocutorsCont
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
         interlocutorsRecyclerView.setLayoutManager(linearLayoutManager);
 
-        chatListAdapter = new ChatListAdapter(activity, userList);
-        interlocutorsRecyclerView.setAdapter(chatListAdapter);
+        interlocutorsListAdapter = new InterlocutorsListAdapter(activity, userList);
+        interlocutorsRecyclerView.setAdapter(interlocutorsListAdapter);
     }
 
 
@@ -105,8 +104,8 @@ public class InterlocutorsFragment extends Fragment implements InterlocutorsCont
 
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
 
         messagesImageView.animate().setDuration(500).scaleX(1.0f).scaleY(1.0f).start();
         messagesImageView.setImageResource(R.drawable.ic_messages_bw);
@@ -133,7 +132,7 @@ public class InterlocutorsFragment extends Fragment implements InterlocutorsCont
         userList.clear();
         userList.addAll(users);
 
-        chatListAdapter.notifyDataSetChanged();
+        interlocutorsListAdapter.notifyDataSetChanged();
 
         Log.d(TAG, "loadInterlocutorsSuccessful: " + users);
     }

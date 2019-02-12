@@ -117,15 +117,6 @@ public class SettingsFragment extends Fragment implements SettingsContract.View 
 
 
     @Override
-    public void onPause() {
-        super.onPause();
-
-        settingsImageView.animate().setDuration(500).scaleX(1.0f).scaleY(1.0f).start();
-        settingsImageView.setImageResource(R.drawable.ic_settings_bw);
-    }
-
-
-    @Override
     public void showProgressBar() {
 
         progressBar.setVisibility(View.VISIBLE);
@@ -212,5 +203,8 @@ public class SettingsFragment extends Fragment implements SettingsContract.View 
         super.onDestroyView();
 
         presenter.onDestroy();
+
+        settingsImageView.animate().setDuration(500).scaleX(1.0f).scaleY(1.0f).start();
+        settingsImageView.setImageResource(R.drawable.ic_settings_bw);
     }
 }

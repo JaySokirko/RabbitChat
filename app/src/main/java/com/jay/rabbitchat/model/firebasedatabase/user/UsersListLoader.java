@@ -1,5 +1,7 @@
 package com.jay.rabbitchat.model.firebasedatabase.user;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,6 +52,8 @@ public class UsersListLoader implements SearchUsersContract.Model {
         getDatabaseReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                userList.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 

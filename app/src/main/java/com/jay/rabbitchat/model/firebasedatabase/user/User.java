@@ -8,13 +8,19 @@ public class User {
 
     private String imageURL;
 
-    public User(String id, String userName, String imageURL) {
+    private boolean online;
+
+    private String wasOnline;
+
+    public User() {
+    }
+
+    public User(String id, String userName, String imageURL, boolean online, String wasOnline) {
         this.id = id;
         this.userName = userName;
         this.imageURL = imageURL;
-    }
-
-    public User() {
+        this.online = online;
+        this.wasOnline = wasOnline;
     }
 
 
@@ -40,5 +46,21 @@ public class User {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public String getWasOnline() {
+        return wasOnline;
+    }
+
+    public void setWasOnline(String wasOnline) {
+        this.wasOnline = wasOnline;
     }
 }

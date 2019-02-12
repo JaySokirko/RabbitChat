@@ -26,7 +26,7 @@ import com.jay.rabbitchat.R;
 import com.jay.rabbitchat.di.DaggerAppComponent;
 import com.jay.rabbitchat.di.PresenterModule;
 import com.jay.rabbitchat.di.SharedPreferencesModule;
-import com.jay.rabbitchat.model.adapter.UsersListAdapter;
+import com.jay.rabbitchat.model.adapter.SearchUsersListAdapter;
 import com.jay.rabbitchat.model.firebasedatabase.user.User;
 import com.jay.rabbitchat.presenter.SearchUsersPresenter;
 
@@ -58,7 +58,7 @@ public class SearchUsersFragment extends Fragment implements SearchUsersContract
     @Inject
     SearchUsersPresenter presenter;
 
-    private UsersListAdapter adapter;
+    private SearchUsersListAdapter adapter;
 
     private List<User> usersList = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class SearchUsersFragment extends Fragment implements SearchUsersContract
 
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
-        adapter = new UsersListAdapter(activity, usersList);
+        adapter = new SearchUsersListAdapter(activity, usersList);
         usersRecyclerView.setAdapter(adapter);
 
         presenter.loadUsersList();
@@ -111,8 +111,8 @@ public class SearchUsersFragment extends Fragment implements SearchUsersContract
 
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
 
         searchImageView.animate().setDuration(500).scaleX(1.0f).scaleY(1.0f).start();
         searchImageView.setImageResource(R.drawable.ic_search_bw);

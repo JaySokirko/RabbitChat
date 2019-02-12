@@ -76,8 +76,8 @@ public class GroupsFragment extends Fragment {
 
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
 
         groupsImageView.animate().setDuration(500).scaleX(1.0f).scaleY(1.0f).start();
         groupsImageView.setImageResource(R.drawable.ic_group_bw);
